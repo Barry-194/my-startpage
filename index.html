@@ -3,37 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的导航</title>
+    <title>我的个人主页</title>
     <link rel="stylesheet" href="style.css">
+    <!-- 引入字体图标库 (可选，这里暂时没用，预留) -->
 </head>
 <body>
+    <!-- 背景遮罩，让文字更清晰 -->
+    <div class="overlay"></div>
+
     <div class="container">
-        <!-- 搜索框 -->
+        <!-- 1. 时间显示区域 -->
+        <div class="header">
+            <div id="time">00:00</div>
+            <div id="date">Loading...</div>
+        </div>
+
+        <!-- 2. 搜索框 -->
         <div class="search-box">
             <form action="https://www.google.com/search" method="get" target="_blank">
                 <input type="text" name="q" placeholder="Google 搜索..." autocomplete="off">
             </form>
         </div>
 
-        <!-- 常用分类 -->
+        <!-- 3. 常用网站分类 -->
+        <!-- 注意：img src 里的链接会自动获取对应网站的图标 -->
+        
         <div class="category">
-            <h3>工作/学习</h3>
+            <h3>💻 工作与开发</h3>
             <div class="grid">
-                <a href="https://chatgpt.com" class="card">ChatGPT</a>
-                <a href="https://github.com" class="card">GitHub</a>
-                <a href="https://gmail.com" class="card">Gmail</a>
-                <a href="https://notion.so" class="card">Notion</a>
+                <a href="https://github.com" class="card" target="_blank">
+                    <img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" alt="icon">
+                    <span>GitHub</span>
+                </a>
+                <a href="https://chatgpt.com" class="card" target="_blank">
+                    <img src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" alt="icon">
+                    <span>ChatGPT</span>
+                </a>
+                <a href="https://gmail.com" class="card" target="_blank">
+                    <img src="https://www.google.com/s2/favicons?domain=gmail.com&sz=64" alt="icon">
+                    <span>Gmail</span>
+                </a>
+                <a href="https://fanyi.google.com" class="card" target="_blank">
+                    <img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="icon">
+                    <span>翻译</span>
+                </a>
             </div>
         </div>
 
         <div class="category">
-            <h3>娱乐/摸鱼</h3>
+            <h3>☕ 摸鱼与生活</h3>
             <div class="grid">
-                <a href="https://bilibili.com" class="card">Bilibili</a>
-                <a href="https://youtube.com" class="card">YouTube</a>
-                <a href="https://weibo.com" class="card">微博</a>
+                <a href="https://www.bilibili.com" class="card" target="_blank">
+                    <img src="https://www.google.com/s2/favicons?domain=bilibili.com&sz=64" alt="icon">
+                    <span>Bilibili</span>
+                </a>
+                <a href="https://www.youtube.com" class="card" target="_blank">
+                    <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="icon">
+                    <span>YouTube</span>
+                </a>
+                <a href="https://www.douban.com" class="card" target="_blank">
+                    <img src="https://www.google.com/s2/favicons?domain=douban.com&sz=64" alt="icon">
+                    <span>豆瓣</span>
+                </a>
+                <a href="https://weibo.com" class="card" target="_blank">
+                    <img src="https://www.google.com/s2/favicons?domain=weibo.com&sz=64" alt="icon">
+                    <span>微博</span>
+                </a>
             </div>
         </div>
     </div>
+
+    <!-- 简单的 JS 脚本：让时间动起来 -->
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('zh-CN', { hour12: false, hour: '2-digit', minute: '2-digit' });
+            const dateString = now.toLocaleDateString('zh-CN', { month: 'long', day: 'numeric', weekday: 'long' });
+            
+            document.getElementById('time').textContent = timeString;
+            document.getElementById('date').textContent = dateString;
+        }
+        setInterval(updateTime, 1000); // 每秒刷新
+        updateTime(); // 初始化执行一次
+    </script>
 </body>
 </html>
